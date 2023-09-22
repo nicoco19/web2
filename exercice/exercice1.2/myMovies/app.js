@@ -16,6 +16,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 let compteur = 0;
+let compteurUrl = 0;
 
 app.use((req,res,next) => {
 
@@ -24,8 +25,13 @@ app.use((req,res,next) => {
         compteur++;
         
     }
+
+    if(req.path === '/films' && req.method === 'GET'){
+
+        compteurUrl ++;
+    }
    
-    console.log("get / : " + compteur);
+    console.log("get / : " + compteur + "\n" + "get /films : " + compteurUrl);
 
     next();
 });
