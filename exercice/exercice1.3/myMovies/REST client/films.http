@@ -1,0 +1,10 @@
+### Create a film
+POST http://localhost:3000/films
+Content-Type: application/json
+
+{
+    "title": "le juge",
+    "duration": 120,
+    "budget": 200000,
+    "link": "http://"
+}
