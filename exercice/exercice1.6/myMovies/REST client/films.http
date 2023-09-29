@@ -14,15 +14,15 @@ Content-Type: application/json
 ###Delete a film
 DELETE {{baseUrl}}/films/4
 
-### Read all pizzas with File variable
+### Read all films with File variable
 GET {{baseUrl}}/films
 
 ### update a film
-PUT  {{baseUrl}}/films/12
+PUT  {{baseUrl}}/films/1
 Content-Type: application/json
 
 {
-        "title" : "test2",
+        "title" : "test3",
         "duration" : 120,
         "budget" : 362000,
         "link" : "https://"

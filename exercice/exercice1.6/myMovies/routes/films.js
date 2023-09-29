@@ -138,6 +138,7 @@ const FILMS = [
   });
 
   router.put('/:id',(req, res) => {
+
     const id = req.params.id;
     const title = req?.body?.title;
     const duration = req?.body?.duration;
@@ -162,11 +163,12 @@ const FILMS = [
   if(result){
 
     return res.status(400);
+    
   }
-  
 
-  FILMS.push(newFilm);
+    FILMS.push(newFilm);
     return res.json(newFilm);
+
     }
 
     const findIndex = FILMS.findIndex(e => e.id == req.params.id);
