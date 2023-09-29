@@ -30,9 +30,17 @@ const FILMS = [
     const orderByDuration = req?.query['minimum-duration']? req.query['minimum-duration']: undefined;
 
     let orderedFILMS;
+
     if(orderByDuration){
 
       orderedFILMS = [...FILMS].filter(film => film.duration > orderByDuration);
+
+    }
+
+    if(orderByDuration <= 0){
+
+      return res.status(400);
+
     }
 
     console.log("GET /films");
@@ -46,7 +54,7 @@ const FILMS = [
 
     const indexOfFilmsFind = FILMS.findIndex((film) => film.id == req.params.id);
 
-    if(indexOfFilmsFind < 0) return res.status(400);
+    if(indexOfFilmsFind < 0) return res.status(404);
 
     res.json(FILMS[indexOfFilmsFind]);
 
@@ -73,6 +81,14 @@ const FILMS = [
     link: link,
 
   };
+
+  const result = FILMS.find(e => e.title === newFilm.title);
+
+  if(result){
+
+    return res.status(400);
+  }
+  
 
   FILMS.push(newFilm);
     res.json(newFilm);
