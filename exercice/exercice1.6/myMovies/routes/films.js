@@ -96,5 +96,94 @@ const FILMS = [
   });
 
 
+  router.delete('/:id', (req, res) => {
+
+    console.log(`delete /films/ ${req.params.id}`);
+
+    if(req.params.id < 0 || req.params.id > FILMS.length){
+
+      return res.status(404);
+    }
+
+    const deltetfilmID = FILMS.findIndex(e => e.id === req.params.id);
+
+    const filmDelete = FILMS.splice(deltetfilmID,1);
+    const filmASupprimer = filmDelete[0];
+
+    res.json(filmASupprimer);
+  });
+
+  router.patch('/:id', (req, res) => {
+
+    const title = req?.body?.title;
+    const duration = req?.body?.duration;
+    const budget = req?.body?.budget;
+    const link = req?.body?.link; 
+
+
+   console.log( typeof req.params.id )
+
+    const findIndex = FILMS.findIndex(e => e.id == req.params.id);
+
+    if(findIndex < 0) {
+
+      return res.status(404);
+    }
+    const updateFilm = {...FILMS[findIndex], ...req.body};
+
+    FILMS[findIndex] = updateFilm;
+
+    res.json(updateFilm);
+
+  });
+
+  router.put('/:id',(req, res) => {
+    const id = req.params.id;
+    const title = req?.body?.title;
+    const duration = req?.body?.duration;
+    const budget = req?.body?.budget;
+    const link = req?.body?.link; 
+
+    if(!title || !duration || !budget || !link) return res.sendStatus(400);
+
+    if(id > FILMS.length){
+
+  const newFilm = {
+    id : id,
+    title : title,
+    duration : duration,
+    budget: budget,
+    link: link,
+
+  };
+
+  const result = FILMS.find(e => e.title === newFilm.title);
+
+  if(result){
+
+    return res.status(400);
+  }
+  
+
+  FILMS.push(newFilm);
+    return res.json(newFilm);
+    }
+
+    const findIndex = FILMS.findIndex(e => e.id == req.params.id);
+
+    if(findIndex < 0) {
+
+      return res.status(404);
+    }
+
+    const updateFilm = {...FILMS[findIndex], ...req.body};
+
+    FILMS[findIndex] = updateFilm;
+
+    res.json(updateFilm);
+
+  });
+
+
 
 module.exports = router;

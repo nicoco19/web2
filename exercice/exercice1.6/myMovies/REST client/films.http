@@ -1,5 +1,7 @@
+@baseUrl = http://localhost:3000
+
 ### Create a film
-POST http://localhost:3000/films
+POST {{baseUrl}}/films
 Content-Type: application/json
 
 {
@@ -8,3 +10,22 @@ Content-Type: application/json
     "budget": 200000,
     "link": "http://"
 }
+
+###Delete a film
+DELETE {{baseUrl}}/films/4
+
+### Read all pizzas with File variable
+GET {{baseUrl}}/films
+
+### update a film
+PUT  {{baseUrl}}/films/12
+Content-Type: application/json
+
+{
+        "title" : "test2",
+        "duration" : 120,
+        "budget" : 362000,
+        "link" : "https://"
+    }
+
+
