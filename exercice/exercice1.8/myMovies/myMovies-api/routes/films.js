@@ -1,34 +1,37 @@
-var express = require("express");
-var router = express.Router();
-const { serialize, parse } = require("../utils/json");
-const jsonDbPath = __dirname + "/../data/films.json";
+const express = require('express');
+
+const router = express.Router();
+const { serialize, parse } = require('../utils/json');
+
+const jsonDbPath = `${__dirname}/../data/films.json`;
 const FILMS = [
   {
-         id: 1,
-    title: "Harry Potter",
+    id: 1,
+    title: 'Harry Potter',
     duration: 120,
     budget: 362000,
-    link: "https://",
+    link: 'https://',
   },
   {
     id: 2,
-    title: "le seigneur des anneaux",
+    title: 'le seigneur des anneaux',
     duration: 180,
     budget: 529000,
-    link: "https://",
+    link: 'https://',
   },
   {
     id: 3,
-    title: "Indiana Jones",
+    title: 'Indiana Jones',
     duration: 60,
     budget: 713000,
-    link: "https://",
+    link: 'https://',
   },
 ];
 
-router.get("/", (req, res, next) => {
-  const orderByDuration = req?.query["minimum-duration"]
-    ? req.query["minimum-duration"]
+// eslint-disable-next-line consistent-return
+router.get('/', (req, res) => {
+  const orderByDuration = req?.query['minimum-duration']
+    ? req.query['minimum-duration']
     : undefined;
 
   let orderedFILMS;
@@ -43,30 +46,33 @@ router.get("/", (req, res, next) => {
     return res.status(400);
   }
 
-  console.log("GET /films");
+  // eslint-disable-next-line no-console
+  console.log('GET /films');
   res.json(orderedFILMS ?? films);
 });
 
-//for finding film
-router.get("/:id", (req, res, next) => {
+// for finding film
+// eslint-disable-next-line consistent-return
+router.get('/:id', (req, res) => {
+  // eslint-disable-next-line no-console
   console.log(`GET /films/${req.params.id}`);
 
   const films = parse(jsonDbPath, FILMS);
 
-  const indexOfFilmsFind = FILMS.findIndex((film) => film.id == req.params.id);
+  const indexOfFilmsFind = FILMS.findIndex((film) => film.id === req.params.id);
 
   if (indexOfFilmsFind < 0) return res.status(404);
 
   res.json(films[indexOfFilmsFind]);
 });
 
-router.post("/", (req, res, next) => {
+// eslint-disable-next-line consistent-return
+router.post('/', (req, res) => {
   const films = parse(jsonDbPath, FILMS);
-  const title = req?.body?.title.length != 0 ? req.body.title : undefined;
-  const duration =
-    req?.body?.duration.length != 0 ? req.body.duration : undefined;
-  const budget = req?.body.budget.length != 0 ? req.body.budget : undefined;
-  const link = req?.body?.link.length != 0 ? req.body.link : undefined;
+  const title = req?.body?.title.length !== 0 ? req.body.title : undefined;
+  const duration = req?.body?.duration.length !== 0 ? req.body.duration : undefined;
+  const budget = req?.body.budget.length !== 0 ? req.body.budget : undefined;
+  const link = req?.body?.link.length !== 0 ? req.body.link : undefined;
 
   if (!title || !duration || !budget || !link) return res.status(400);
 
@@ -76,10 +82,10 @@ router.post("/", (req, res, next) => {
 
   const newFilm = {
     id: nextId,
-    title: title,
-    duration: duration,
-    budget: budget,
-    link: link,
+    title,
+    duration,
+    budget,
+    link,
   };
 
   const result = FILMS.find((e) => e.title === newFilm.title);
@@ -93,7 +99,9 @@ router.post("/", (req, res, next) => {
   res.json(newFilm);
 });
 
-router.delete("/:id", (req, res) => {
+// eslint-disable-next-line consistent-return
+router.delete('/:id', (req, res) => {
+  // eslint-disable-next-line no-console
   console.log(`delete /films/ ${req.params.id}`);
 
   const films = parse(jsonDbPath, FILMS);
@@ -102,7 +110,7 @@ router.delete("/:id", (req, res) => {
     return res.status(404);
   }
 
-  const deltetfilmID = FILMS.findIndex((e) => e.id === req.params.id);
+  const deltetfilmID = FILMS.findIndex((e) => e.id === Number(req.params.id));
 
   const filmDelete = films.splice(deltetfilmID, 1);
   const filmASupprimer = filmDelete[0];
@@ -111,16 +119,13 @@ router.delete("/:id", (req, res) => {
   res.json(filmASupprimer);
 });
 
-router.patch("/:id", (req, res) => {
-  const title = req?.body?.title;
-  const duration = req?.body?.duration;
-  const budget = req?.body?.budget;
-  const link = req?.body?.link;
-
+// eslint-disable-next-line consistent-return
+router.patch('/:id', (req, res) => {
+  // eslint-disable-next-line no-console
   console.log(typeof req.params.id);
 
   const films = parse(jsonDbPath, FILMS);
-  const findIndex = films.findIndex((e) => e.id == req.params.id);
+  const findIndex = films.findIndex((e) => e.id === req.params.id);
 
   if (findIndex < 0) {
     return res.status(404);
@@ -134,8 +139,9 @@ router.patch("/:id", (req, res) => {
   res.json(updateFilm);
 });
 
-router.put("/:id", (req, res) => {
-  const id = req.params.id;
+// eslint-disable-next-line consistent-return
+router.put('/:id', (req, res) => {
+  const { id } = req.params;
   const title = req?.body?.title;
   const duration = req?.body?.duration;
   const budget = req?.body?.budget;
@@ -146,11 +152,11 @@ router.put("/:id", (req, res) => {
   const films = parse(jsonDbPath, FILMS);
   if (id > films.length) {
     const newFilm = {
-      id: id,
-      title: title,
-      duration: duration,
-      budget: budget,
-      link: link,
+      id,
+      title,
+      duration,
+      budget,
+      link,
     };
 
     const result = films.find((e) => e.title === newFilm.title);
@@ -164,7 +170,7 @@ router.put("/:id", (req, res) => {
     return res.json(newFilm);
   }
 
-  const findIndex = films.findIndex((e) => e.id == req.params.id);
+  const findIndex = films.findIndex((e) => e.id === Number(req.params.id));
 
   if (findIndex < 0) {
     return res.status(404);

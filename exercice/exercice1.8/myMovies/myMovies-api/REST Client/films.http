@@ -5,7 +5,7 @@ POST {{baseUrl}}/films
 Content-Type: application/json
 
 {
-    "title": "ismet",
+    "title": "le juge",
     "duration": 120,
     "budget": 200000,
     "link": "http://"
@@ -22,7 +22,7 @@ PUT  {{baseUrl}}/films/1
 Content-Type: application/json
 
 {
-        "title" : "Harry potter",
+        "title" : "Harry Potter",
         "duration" : 120,
         "budget" : 362000,
         "link" : "https://"
