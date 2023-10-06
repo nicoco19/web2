@@ -21,7 +21,7 @@ POST {{baseUrl}}/pizzas
 Content-Type: application/json
 
 {
-    "title":"Magic Green",
+    "title":"Magic Green 1",
     "content":"Epinards, Brocolis, Olives vertes, Basilic"
 }
 

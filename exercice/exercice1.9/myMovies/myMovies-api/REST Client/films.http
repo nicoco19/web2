@@ -5,20 +5,20 @@ POST {{baseUrl}}/films
 Content-Type: application/json
 
 {
-    "title": "le juge",
+    "title": "harry potter",
     "duration": 120,
     "budget": 200000,
     "link": "http://"
 }
 
 ###Delete a film
-DELETE {{baseUrl}}/films/4
+DELETE {{baseUrl}}/films/1
 
 ### Read all films with File variable
 GET {{baseUrl}}/films
 
 ### update a film
-PUT  {{baseUrl}}/films/1
+PUT {{baseUrl}}/films/1
 Content-Type: application/json
 
 {
