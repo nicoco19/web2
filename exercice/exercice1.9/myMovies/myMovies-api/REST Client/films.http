@@ -5,7 +5,7 @@ POST {{baseUrl}}/films
 Content-Type: application/json
 
 {
-    "title": "harry potter",
+    "title": "alexis le con",
     "duration": 120,
     "budget": 200000,
     "link": "http://"
