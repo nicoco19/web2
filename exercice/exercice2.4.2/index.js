@@ -12,20 +12,26 @@ setInterval(() => {
         orange.style.background = "orange";
         red.style.background = "white";
 
-    } else if (phase == 2){
+    }
+
+    if (phase == 2){
         green.style.background = "green";
         orange.style.background = "white";
 
-    }else if(phase == 3){
+    }
+
+    if(phase == 3){
         orange.style.background = "orange";
         green.style.background = "white";
 
-    }else if(phase == 4){
+    }
+    
+    if(phase == 4){
         red.style.background = "red";
         orange.style.background = "white";
         phase = 0; 
     }
 
     phase++;
-    
+
 }, 1000);
