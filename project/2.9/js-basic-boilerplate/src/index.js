@@ -6,7 +6,6 @@ import imageNico from './img/photoNico(1).jpg'
 
 
 const wrapperContainer = document.querySelector('.container');
-const bouton = document.querySelector('#buttonAbout');
 
 
 function renderLine(){
@@ -109,15 +108,21 @@ function renderEmpFIlm(imageFilm, title, desc){
 
   }
   
-  bouton.addEventListener('click',changeForAbout);
   
 function changeForNotAbout(){
   wrapperContainer.innerHTML = '';
+  const boutonAbout = document.createElement('button');
+  boutonAbout.innerText = 'about';
+  boutonAbout.className = 'btn btn-outline-primary';
+  boutonAbout.addEventListener('click',changeForAbout);
+ 
+  
   const textLeJuge = "le film est le juge ";
   const textTuNeTuerasPoint = "le films est tu ne tueras points";
   
   renderEmpFIlm(imageLeJuge,"Le Juge",textLeJuge);
   renderEmpFIlm(imageTuNeTuerasPoint,"Tu ne tueras points",textTuNeTuerasPoint);
+  wrapperContainer.appendChild(boutonAbout);
 }
  
 changeForNotAbout();
