@@ -15,7 +15,7 @@ function renderLine(){
 
 function renderFilmsImage(filmsImages){
 
-    const image = document.createElement('img');
+    const image = new Image();
 
     image.src = filmsImages;
     image.className = 'img-fluid rounded-start';
