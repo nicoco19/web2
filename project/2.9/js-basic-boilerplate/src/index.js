@@ -4,6 +4,7 @@ import imageLeJuge from "./img/leJugeImg.jpg";
 import imageTuNeTuerasPoint from "./img/tu_ne_tueras_point_c.jpg"
 import imageNico from './img/photoNico(1).jpg'
 
+
 const wrapperContainer = document.querySelector('.container');
 const bouton = document.querySelector('#buttonAbout');
 
@@ -100,15 +101,25 @@ function renderEmpFIlm(imageFilm, title, desc){
     wrapperContainer.innerHTML = '';
      
     renderEmpFIlm(imageNico,"About me","bonjour je suis en 2 eme année en informatique de gestion");
+    const bontonReturn = document.createElement('button');
+    bontonReturn.innerText = 'Return';
+    bontonReturn.className = 'btn btn-outline-primary';
+    wrapperContainer.appendChild(bontonReturn);
+    bontonReturn.addEventListener('click',changeForNotAbout);
 
   }
-
-
+  
+  bouton.addEventListener('click',changeForAbout);
+  
+function changeForNotAbout(){
+  wrapperContainer.innerHTML = '';
   const textLeJuge = "le film est le juge ";
   const textTuNeTuerasPoint = "le films est tu ne tueras points";
-  bouton.addEventListener('click',changeForAbout);
+  
   renderEmpFIlm(imageLeJuge,"Le Juge",textLeJuge);
   renderEmpFIlm(imageTuNeTuerasPoint,"Tu ne tueras points",textTuNeTuerasPoint);
+}
  
+changeForNotAbout();
 
 
