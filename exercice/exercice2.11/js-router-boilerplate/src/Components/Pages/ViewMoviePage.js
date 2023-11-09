@@ -30,7 +30,7 @@ thVue2.innerHTML = "Title";
 
 const thVue3 = document.createElement('th');
 thVue3.scope = "col";
-thVue3.innerHTML = "Duration (min)";
+thVue3.innerHTML = "Duration";
 
 const thVue4 = document.createElement('th');
 thVue4.scope = "col";
