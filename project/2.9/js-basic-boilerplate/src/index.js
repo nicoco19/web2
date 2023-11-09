@@ -118,10 +118,10 @@ function changeForNotAbout(){
  
   
   const textLeJuge = "le film est le juge ";
-  const textTuNeTuerasPoint = "le films est tu ne tueras points";
+  const textTuNeTuerasPoint = "le films est tu ne tueras point";
   
   renderEmpFIlm(imageLeJuge,"Le Juge",textLeJuge);
-  renderEmpFIlm(imageTuNeTuerasPoint,"Tu ne tueras points",textTuNeTuerasPoint);
+  renderEmpFIlm(imageTuNeTuerasPoint,"Tu ne tueras point",textTuNeTuerasPoint);
   wrapperContainer.appendChild(boutonAbout);
 }
  
