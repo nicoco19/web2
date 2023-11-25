@@ -1,0 +1,31 @@
+@baseUrl = http://localhost:3000
+
+### Create a film
+POST {{baseUrl}}/films
+Content-Type: application/json
+
+{
+    "title": "",
+    "duration": 120,
+    "budget": 200000,
+    "link": "http://"
+}
+
+###Delete a film
+DELETE {{baseUrl}}/films/1
+
+### Read all films with File variable
+GET {{baseUrl}}/films
+
+### update a film
+PUT {{baseUrl}}/films/1
+Content-Type: application/json
+
+{
+        "title" : "Harry Potter",
+        "duration" : 120,
+        "budget" : 362000,
+        "link" : "https://"
+    }
+
+
